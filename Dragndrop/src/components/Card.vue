@@ -7,7 +7,8 @@
         class="card__img"
         :src="imageSrc"
         :alt="name"
-      />
+        draggable="false"
+        />
       <div v-else class="card__img-placeholder" aria-hidden="true"></div>
     </div>
 
