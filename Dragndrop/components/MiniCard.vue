@@ -27,22 +27,27 @@ function onClick() {
 <style scoped>
 .miniCard {
   width: 110px;
-  background: #ffffff;
-  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
   padding: 10px;
   box-sizing: border-box;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.14);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
 }
 
 .miniCard__img {
   width: 100%;
   height: 70px;
   border-radius: 12px;
-  background: #d3d3d3;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.20), rgba(34, 211, 238, 0.16));
+  border: 1px solid rgba(255, 255, 255, 0.16);
   position: relative;
   overflow: hidden;
 }
@@ -56,19 +61,18 @@ function onClick() {
   margin: auto;
   width: 90px;
   height: 2px;
-  background: rgba(0,0,0,0.35);
+  background: rgba(255,255,255,0.42);
   transform-origin: center;
 }
 .miniCard__img::before { transform: rotate(45deg); }
 .miniCard__img::after { transform: rotate(-45deg); }
 
 .miniCard__name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
-  color: #111;
+  color: rgba(255,255,255,0.92);
   line-height: 1.1;
 
-  /* por si el nombre es largo */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -78,6 +82,8 @@ function onClick() {
   cursor: pointer;
 }
 .miniCard--clickable:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 </style>

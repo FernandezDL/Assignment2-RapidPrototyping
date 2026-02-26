@@ -141,27 +141,31 @@ function onCreate() {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.58);
   display: grid;
   place-items: center;
   padding: 18px;
   z-index: 9999;
 }
 
-/* Modal base (gris oscuro como mock) */
+/* Modal base */
 .modal {
-  width: min(820px, 100%);
-  background: #6f6f6f;
-  border-radius: 14px;
+  width: min(860px, 100%);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
   padding: 18px;
   box-sizing: border-box;
-  color: #fff;
+  color: rgba(255,255,255,0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-2);
 }
 
 .modal__title {
   margin: 0 0 14px 0;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 /* Layout interno */
@@ -175,8 +179,9 @@ function onCreate() {
 .preview {
   width: 260px;
   height: 260px;
-  border-radius: 10px;
-  background: #d9d9d9;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(34, 211, 238, 0.18));
+  border: 1px solid rgba(255,255,255,0.16);
   overflow: hidden;
   position: relative;
 }
@@ -202,7 +207,7 @@ function onCreate() {
   margin: auto;
   width: 380px;
   height: 2px;
-  background: rgba(0,0,0,0.45);
+  background: rgba(255,255,255,0.45);
   transform-origin: center;
 }
 .preview__placeholder::before { transform: rotate(45deg); }
@@ -211,8 +216,8 @@ function onCreate() {
 .label {
   margin: 12px 0 6px;
   font-size: 13px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.95);
+  font-weight: 800;
+  color: rgba(255,255,255,0.86);
 }
 
 .artRow {
@@ -223,16 +228,18 @@ function onCreate() {
 .art {
   width: 56px;
   height: 56px;
-  border-radius: 8px;
-  border: 2px solid rgba(255,255,255,0.35);
-  background: #d9d9d9;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(255,255,255,0.12);
   cursor: pointer;
   padding: 0;
   overflow: hidden;
+  transition: transform 140ms ease, border-color 140ms ease;
 }
+.art:hover { transform: translateY(-1px); }
 .art--active {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
+  border-color: rgba(34, 211, 238, 0.65);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
 }
 
 .art__img {
@@ -255,7 +262,7 @@ function onCreate() {
   margin: auto;
   width: 80px;
   height: 2px;
-  background: rgba(0,0,0,0.45);
+  background: rgba(255,255,255,0.45);
   transform-origin: center;
 }
 .art__placeholder::before { transform: rotate(45deg); }
@@ -271,14 +278,19 @@ function onCreate() {
 .input,
 .textarea {
   width: 100%;
-  border: none;
-  border-radius: 6px;
-  background: #d9d9d9;
-  color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255,255,255,0.92);
   padding: 10px 12px;
   box-sizing: border-box;
   outline: none;
   font-size: 14px;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255,255,255,0.55);
 }
 
 .textarea {
@@ -291,22 +303,30 @@ function onCreate() {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-end; /* como en mock, botones a la derecha */
+  align-items: flex-end;
 }
 
 .btn {
   width: 160px;
-  border: none;
-  border-radius: 6px;
-  background: #d9d9d9;
-  color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255,255,255,0.92);
   padding: 10px 12px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 900;
+  transition: transform 140ms ease, background 140ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .btn--primary {
-  background: #eaeaea;
+  border: none;
+  background: linear-gradient(135deg, rgba(124,58,237,0.92), rgba(34,211,238,0.78));
+  color: rgba(255,255,255,0.96);
 }
 
 .btn:disabled {
@@ -317,6 +337,17 @@ function onCreate() {
 .hint {
   margin: 10px 0 0;
   font-size: 12px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.75);
+}
+
+@media (max-width: 860px) {
+  .modal__content {
+    grid-template-columns: 1fr;
+  }
+
+  .preview {
+    width: 100%;
+    height: 220px;
+  }
 }
 </style>

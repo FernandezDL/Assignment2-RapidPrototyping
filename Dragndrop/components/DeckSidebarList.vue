@@ -43,11 +43,14 @@ defineEmits<{
 .sidebar {
   width: 280px;
   min-height: 100vh;
-  background: #d3d3d3;
-  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-lg);
   padding: 14px;
   box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-1);
 }
 
 /* header */
@@ -63,7 +66,7 @@ defineEmits<{
   margin: 0;
   font-size: 18px;
   font-weight: 800;
-  color: #111;
+  color: rgba(255,255,255,0.92);
 }
 
 .addBtn {
@@ -71,11 +74,12 @@ defineEmits<{
   height: 30px;
   border: none;
   border-radius: 8px;
-  background: #6f6f6f;
-  color: #fff;
+  background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(34,211,238,0.70));
+  color: rgba(255,255,255,0.95);
   font-size: 20px;
   line-height: 1;
   cursor: pointer;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
 }
 
 /* list */
@@ -91,20 +95,28 @@ defineEmits<{
   align-items: center;
   gap: 12px;
 
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   cursor: pointer;
 
-  background: #6f6f6f;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
   padding: 10px;
   text-align: left;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.deckRow:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .thumb {
   width: 46px;
   height: 46px;
-  border-radius: 8px;
-  background: #d9d9d9;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   position: relative;
   flex: 0 0 auto;
   overflow: hidden;
@@ -119,7 +131,7 @@ defineEmits<{
   margin: auto;
   width: 70px;
   height: 2px;
-  background: rgba(0,0,0,0.35);
+  background: rgba(255,255,255,0.40);
   transform-origin: center;
 }
 .thumb::before { transform: rotate(45deg); }
@@ -128,7 +140,7 @@ defineEmits<{
 .deckName {
   font-size: 14px;
   font-weight: 700;
-  color: #fff;
+  color: rgba(255,255,255,0.92);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

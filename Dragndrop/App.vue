@@ -1,10 +1,8 @@
 <template>
   <div class="app">
-    <!-- Columna izquierda (topbar + contenido scrolleable) -->
     <section class="main">
       <TopSearchBar v-model="searchQuery" placeholder="Search" @back="onBack" />
 
-      <!-- Área scrolleable con la grilla -->
       <div class="contentScroll">
         <div class="grid">
           <div
@@ -25,7 +23,7 @@
       </div>
     </section>
 
-    <!-- Sidebar derecha: 3 estados -->
+    <!-- Sidebar -->
     <DeckSidebarOpen
       v-if="activeDeck"
       class="sidebar"
@@ -52,7 +50,7 @@
       @add-deck="onAddDeck"
     />
 
-    <!-- Modal: crear deck -->
+    <!-- Modal create deck -->
     <NewDeckModal
       :open="isNewDeckOpen"
       v-model:name="newDeckName"
@@ -99,13 +97,12 @@ onMounted(() => {
 const filteredCards = computed(() => {
   const q = searchQuery.value.trim().toLowerCase();
 
-  // ids del deck activo (si no hay deck abierto, es vacío)
   const inDeck = new Set(activeDeck.value?.cardIds ?? []);
 
   return cards.value
-    // 1) ocultar cartas que ya están en el deck activo
+    // hide cards
     .filter((c) => !inDeck.has(c.id))
-    // 2) aplicar búsqueda
+    // apply search
     .filter((c) => {
       if (!q) return true;
       return (
@@ -143,10 +140,8 @@ function renameDeck(newName: string) {
   const trimmed = newName.trim();
   if (!trimmed) return;
 
-  // actualizar el activo
   activeDeck.value = { ...activeDeck.value, name: trimmed };
 
-  // actualizar la lista
   decks.value = decks.value.map((d) =>
     d.id === activeDeck.value!.id ? { ...d, name: trimmed } : d
   );
@@ -178,8 +173,8 @@ function createDeck(payload: { name: string; description: string; artId: string 
     cardIds: []
   };
 
-  decks.value = [deck, ...decks.value]; // aparece arriba en la lista
-  activeDeck.value = deck;              // se abre automático
+  decks.value = [deck, ...decks.value];
+  activeDeck.value = deck;             
 
   closeNewDeck();
 }
@@ -198,10 +193,8 @@ function onCardDragStart(e: DragEvent, cardId: string) {
 function addCardToActiveDeck(cardId: string) {
   if (!activeDeck.value) return;
 
-  // límite
   if (activeDeck.value.cardIds.length >= MAX_DECK_CARDS) return;
 
-  // evitar duplicados (si querés permitir duplicados, borrá este if)
   if (activeDeck.value.cardIds.includes(cardId)) return;
 
   const updated: Deck = {
@@ -211,7 +204,6 @@ function addCardToActiveDeck(cardId: string) {
 
   activeDeck.value = updated;
 
-  // mantener sincronizada la lista de decks
   decks.value = decks.value.map((d) => (d.id === updated.id ? updated : d));
 }
 
@@ -234,29 +226,48 @@ const deckCards = computed(() => {
 .app {
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 16px;
-  padding: 14px;
-  box-sizing: border-box;
-  background: #ffffff;
+  grid-template-columns: 1fr 340px;
+  gap: 18px;
+  padding: 18px;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.app::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(255, 255, 255, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(255, 255, 255, 0.06), transparent 62%);
+  filter: blur(2px);
 }
 
 .main {
   min-width: 0;
-  background: #e5e5e5;
-  border-radius: 18px;
-  padding: 10px;
+  height: 96vh;
+  border-radius: var(--r-lg);
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-1);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
 .contentScroll {
-  margin-top: 10px;
-  background: #cfcfcf;
-  border-radius: 16px;
-  padding: 12px;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r-md);
+  padding: 14px;
   box-sizing: border-box;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
 
   flex: 1;
   min-height: 0;
@@ -266,19 +277,35 @@ const deckCards = computed(() => {
 
 .grid {
   display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   align-items: start;
 }
 
 .sidebar {
-  height: calc(100vh - 28px);
+  height: calc(100vh - 36px);
 }
 
 .draggableCard {
   cursor: grab;
+  transition: transform 140ms ease;
 }
 .draggableCard:active {
   cursor: grabbing;
+}
+
+.draggableCard:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+  .app {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .sidebar {
+    height: auto;
+  }
 }
 </style>

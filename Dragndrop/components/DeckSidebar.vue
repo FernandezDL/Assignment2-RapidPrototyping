@@ -93,11 +93,14 @@ onBeforeUnmount(() => {
 .sidebar {
   width: 280px;
   min-height: 80vh;
-  background: #d3d3d3; /* gris como la imagen */
-  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-lg);
   padding: 16px 14px;
   box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-1);
 }
 
 /* Header */
@@ -113,7 +116,7 @@ onBeforeUnmount(() => {
   margin: 0;
   font-size: 22px;
   font-weight: 800;
-  color: #111;
+  color: rgba(255,255,255,0.92);
 }
 
 .sidebar__add {
@@ -121,11 +124,12 @@ onBeforeUnmount(() => {
   height: 34px;
   border: none;
   border-radius: 8px;
-  background: #6f6f6f;
-  color: #fff;
+  background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(34,211,238,0.70));
+  color: rgba(255,255,255,0.95);
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
 }
 
 .sidebar__add:hover {
@@ -144,7 +148,8 @@ onBeforeUnmount(() => {
   height: 170px;
   margin: 0 auto 14px auto;
   border-radius: 14px;
-  background: #6f6f6f;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   position: relative;
   overflow: hidden;
 }
@@ -158,7 +163,7 @@ onBeforeUnmount(() => {
   margin: auto;
   width: 240px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.55);
   transform-origin: center;
 }
 .tipcard__image::before {
@@ -172,7 +177,7 @@ onBeforeUnmount(() => {
   margin: 0 0 8px 0;
   font-size: 18px;
   font-weight: 700;
-  color: #111;
+  color: rgba(255,255,255,0.92);
 }
 
 .tipcard__text {
@@ -180,7 +185,7 @@ onBeforeUnmount(() => {
   max-width: 220px;
   font-size: 14px;
   line-height: 1.35;
-  color: #222;
+  color: rgba(255,255,255,0.74);
 }
 
 /* Dots */
@@ -195,10 +200,10 @@ onBeforeUnmount(() => {
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 .dot--active {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.70);
 }
 
 /* Fade animation */

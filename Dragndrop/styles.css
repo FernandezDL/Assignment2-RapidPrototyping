@@ -1,0 +1,115 @@
+:root {
+  /* Background */
+  --bg-0: #070A12;
+  --bg-1: #0B1630;
+
+  /* Surfaces */
+  --panel: rgba(255, 255, 255, 0.08);
+  --panel-2: rgba(255, 255, 255, 0.12);
+  --panel-solid: rgba(255, 255, 255, 0.92);
+  --stroke: rgba(255, 255, 255, 0.14);
+  --stroke-2: rgba(255, 255, 255, 0.22);
+
+  /* Text */
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+  --muted-2: rgba(255, 255, 255, 0.55);
+  --ink: #0E1220;
+  --ink-muted: rgba(14, 18, 32, 0.70);
+
+  /* Accent */
+  --brand: #7C3AED;   /* violet */
+  --brand-2: #22D3EE; /* cyan */
+  --danger: #FB7185;
+
+  /* Shadows */
+  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 16px 50px rgba(0, 0, 0, 0.45);
+
+  /* Radii */
+  --r-lg: 22px;
+  --r-md: 16px;
+  --r-sm: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 10% 10%, rgba(124, 58, 237, 0.35), transparent 55%),
+    radial-gradient(1000px 700px at 90% 20%, rgba(34, 211, 238, 0.22), transparent 60%),
+    radial-gradient(900px 600px at 50% 100%, rgba(251, 113, 133, 0.18), transparent 55%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1));
+  /* Lock page scroll: only the main cards area scrolls */
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
+
+/* Better focus ring */
+:where(button, input, textarea) {
+  font-family: inherit;
+}
+
+:where(button, input, textarea):focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.55);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(124, 58, 237, 0.35);
+}
+
+/* Scrollbar (Chromium / Edge) */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.26);
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+/* Utility-ish helpers */
+.glass {
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.surface {
+  background: var(--panel-2);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.cardShadow {
+  box-shadow: var(--shadow-1);
+}

@@ -43,13 +43,15 @@ defineEmits<{
 
 <style scoped>
 .topbar {
-  width: 98%;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 12px;
-  background: #d8d7d7;
-  border-radius: 15px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--stroke);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .topbar__back {
@@ -77,14 +79,17 @@ defineEmits<{
   gap: 10px;
   padding: 10px 14px;
   border-radius: 18px;
-  background: #bfbfbf;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.18);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .search__icon {
   width: 22px;
   height: 22px;
-  color: #444;
+  color: rgba(255,255,255,0.80);
   flex: 0 0 auto;
 }
 
@@ -94,10 +99,10 @@ defineEmits<{
   outline: none;
   background: transparent;
   font-size: 16px;
-  color: #111;
+  color: rgba(255,255,255,0.92);
 }
 
 .search__input::placeholder {
-  color: #4a4a4a;
+  color: rgba(255,255,255,0.55);
 }
 </style>

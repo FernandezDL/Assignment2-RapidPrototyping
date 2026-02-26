@@ -185,17 +185,20 @@ function cancelEdit() {
 .sidebar {
   width: 280px;
   min-height: 100vh;
-  background: #d3d3d3;
-  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-lg);
   padding: 14px;
   box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-1);
 }
 
 .sidebar--dragOver {
-  outline: 3px dashed rgba(0, 0, 0, 0.45);
+  outline: 3px dashed rgba(34, 211, 238, 0.65);
   outline-offset: -6px;
-  background: #c9c9c9;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .header {
@@ -210,7 +213,7 @@ function cancelEdit() {
   margin: 0;
   font-size: 18px;
   font-weight: 800;
-  color: #111;
+  color: rgba(255,255,255,0.92);
   line-height: 1.1;
 }
 
@@ -220,23 +223,30 @@ function cancelEdit() {
 }
 
 .iconBtn {
-  width: 26px;
-  height: 26px;
-  border: none;
-  border-radius: 6px;
-  background: #b5b5b5;
-  color: #111;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
   cursor: pointer;
   font-weight: 800;
   display: grid;
   place-items: center;
+  transition: transform 140ms ease, background 140ms ease;
+}
+
+.iconBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.14);
 }
 
 .preview {
   width: 100%;
   height: 190px;
-  border-radius: 12px;
-  background: #a6a6a6;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.22), rgba(34, 211, 238, 0.16));
+  border: 1px solid rgba(255,255,255,0.16);
   position: relative;
   overflow: hidden;
   margin-bottom: 10px;
@@ -250,7 +260,7 @@ function cancelEdit() {
   margin: auto;
   width: 250px;
   height: 2px;
-  background: rgba(0,0,0,0.35);
+  background: rgba(255,255,255,0.45);
   transform-origin: center;
 }
 .preview::before { transform: rotate(45deg); }
@@ -262,7 +272,7 @@ function cancelEdit() {
   justify-content: space-between;
   gap: 12px;
   margin: 6px 0 10px;
-  color: #111;
+  color: rgba(255,255,255,0.86);
   font-size: 12px;
 }
 
@@ -275,9 +285,9 @@ function cancelEdit() {
 .box {
   width: 12px;
   height: 12px;
-  background: #bdbdbd;
-  border: 1px solid rgba(0,0,0,0.25);
-  border-radius: 3px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 4px;
 }
 
 .check {
@@ -294,13 +304,13 @@ function cancelEdit() {
 
 .divider {
   height: 1px;
-  background: rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.16);
   margin: 8px 0;
 }
 
 .divider.dashed {
   background: transparent;
-  border-top: 1px dashed rgba(0,0,0,0.35);
+  border-top: 1px dashed rgba(255,255,255,0.22);
   margin-top: 6px;
 }
 
@@ -308,27 +318,23 @@ function cancelEdit() {
   text-align: center;
   font-size: 12px;
   font-weight: 700;
-  color: #111;
+  color: rgba(255,255,255,0.86);
 }
 
 .content {
   padding: 10px 2px;
   box-sizing: border-box;
-
-  /* SCROLL */
-  height: 320px;        /* ajustalo a tu gusto */
+  height: 320px;
   overflow-y: auto;
   overflow-x: hidden;
-
-  /* se mira más limpio */
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .placeholder {
   margin: 0;
   text-align: center;
   font-size: 12px;
-  color: rgba(0,0,0,0.65);
+  color: rgba(255,255,255,0.62);
 }
 
 /* Grilla de mini cards */
@@ -343,7 +349,7 @@ function cancelEdit() {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.55);
   display: grid;
   place-items: center;
   z-index: 9999;
@@ -352,11 +358,12 @@ function cancelEdit() {
 
 .editModal {
   width: min(360px, 100%);
-  background: #e6e6e6;
-  border-radius: 12px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 16px;
   padding: 14px;
   box-sizing: border-box;
-  color: #111;
+  color: var(--ink);
+  box-shadow: var(--shadow-2);
 }
 
 .editTitle {
@@ -367,10 +374,10 @@ function cancelEdit() {
 
 .editInput {
   width: 100%;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(14,18,32,0.14);
+  border-radius: 12px;
   padding: 10px 12px;
-  background: #cfcfcf;
+  background: rgba(255,255,255,0.92);
   outline: none;
   box-sizing: border-box;
 }
@@ -383,16 +390,18 @@ function cancelEdit() {
 }
 
 .btn {
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(14,18,32,0.12);
+  border-radius: 12px;
   padding: 10px 12px;
-  background: #cfcfcf;
+  background: rgba(14,18,32,0.06);
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .btnPrimary {
-  background: #ffffff;
+  border: none;
+  color: rgba(255,255,255,0.95);
+  background: linear-gradient(135deg, rgba(124,58,237,0.92), rgba(34,211,238,0.78));
 }
 .btn:disabled {
   opacity: 0.55;
